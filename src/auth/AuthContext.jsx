@@ -66,6 +66,8 @@ export const AuthProvider = ({ children }) => {
 
     }
 
+
+
     //check user status
     const checkUserStatus = async (email) => {
         try {
@@ -80,6 +82,8 @@ export const AuthProvider = ({ children }) => {
 
         }
     }
+
+
 
     const logout = () => {
         localStorage.removeItem("todouser");
