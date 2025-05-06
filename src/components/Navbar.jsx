@@ -30,12 +30,11 @@ const Navbar = () => {
                                 :
                                 <>
                                     <li className="nav-item">
-                                        <NavLink className="nav-link" to="/task-list">Task List</NavLink>
-                                    </li>
-                                    <li className="nav-item">
                                         <NavLink className="nav-link" to="/create-task">Create Task</NavLink>
                                     </li>
-
+                                    <li className="nav-item">
+                                        <NavLink className="nav-link" to="/task-list">Task List</NavLink>
+                                    </li>
                                     <li className="nav-item dropdown">
                                         <span className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                             {user?.fullname}
