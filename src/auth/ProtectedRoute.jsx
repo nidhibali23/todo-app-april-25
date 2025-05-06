@@ -1,7 +1,7 @@
 import React, { children, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
-const ProtectedRoute = () => {
+const ProtectedRoute = ({ children }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const navigate = useNavigate();
 
