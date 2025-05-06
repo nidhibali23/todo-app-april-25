@@ -20,7 +20,7 @@ const CreateTask = () => {
             <div className='row h-100'>
                 <div className='col-lg-6 d-flex align-items-center justify-content-center h-100 flex-column bg-primary text-white'>
                     <div className='w-50'>
-                        <TaskForm isUpdate={isUpdate} />
+                        <TaskForm isUpdate={isUpdate} setIsUpdate={setIsUpdate} data={latestTask} />
                     </div>
                 </div>
 
