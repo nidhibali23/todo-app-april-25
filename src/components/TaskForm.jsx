@@ -10,7 +10,7 @@ const TaskForm = ({ isUpdate, setIsUpdate, data }) => {
         description: "",
         duedate: ""
     }
-    const { addTask } = useContext(TaskContext);
+    const { addTask, updateTask } = useContext(TaskContext);
     const { user } = useContext(AuthContext);
     const [formData, setFormData] = useState(init);
     const handleChange = (e) => {
@@ -25,14 +25,18 @@ const TaskForm = ({ isUpdate, setIsUpdate, data }) => {
 
 
     useEffect(() => {
-        if (isUpdate) {
+        if (isUpdate && data) {
             setFormData(data);
         }
-    }, [isUpdate])
+    }, [isUpdate, data])
 
 
     const handleSubmit = () => {
         addTask(formData)
+    }
+
+    const handleUpdate = () => {
+        updateTask(formData)
     }
 
     const handleCancel = () => {
@@ -63,7 +67,7 @@ const TaskForm = ({ isUpdate, setIsUpdate, data }) => {
 
                         isUpdate ?
                             <>
-                                <button className='btn btn-primary me-2' onClick={handleSubmit}>Update Task</button>
+                                <button className='btn btn-primary me-2' onClick={handleUpdate}>Update Task</button>
                                 <button className='btn btn-secondary' onClick={handleCancel}>Cancel</button>
                             </> :
 

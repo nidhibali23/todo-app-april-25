@@ -3,7 +3,7 @@ import TaskForm from '../components/TaskForm'
 import TaskContext from '../context/TaskContext'
 
 const CreateTask = () => {
-    const { latestTask, recentTask } = useContext(TaskContext);
+    const { latestTask, recentTasks } = useContext(TaskContext);
     const [isUpdate, setIsUpdate] = useState(false);
 
 
@@ -11,9 +11,7 @@ const CreateTask = () => {
     const handleEdit = () => {
         setIsUpdate(true);
 
-
     };
-
 
     return (
         <div className='container-fluid h-100'>
@@ -54,6 +52,27 @@ const CreateTask = () => {
                     </div>
 
 
+                    <div className='card bg-primary text-white rounded-0 w-75 mt-4'>
+                        <div className='card-body'>
+                            <h3 className='mb-3'>Recent Task</h3>
+                            <div className='mb-3'>
+                                {
+                                    recentTasks ?
+                                        recentTasks.map((task) => (
+                                            <div className='d-flex align-items-center justify-content-between p-2 border border-primary'>
+                                                <p className='mb-0'>{task.title}</p>
+                                                <p>{task.duedate}</p>
+
+                                            </div>
+
+                                        ))
+                                        :
+                                        <p>Please add tasks</p>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
@@ -61,5 +80,12 @@ const CreateTask = () => {
         </div>
     )
 }
+export default CreateTask;
 
-export default CreateTask
+
+
+
+
+
+
+
