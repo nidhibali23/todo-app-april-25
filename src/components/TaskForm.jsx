@@ -3,7 +3,7 @@ import AuthContext from '../auth/AuthContext';
 import TaskContext from '../context/TaskContext';
 
 
-const TaskForm = ({ isUpdate, setIsUpdate, data }) => {
+const TaskForm = ({ isUpdate, setIsUpdate, data, closeBtn }) => {
 
     const init = {
         title: "",
@@ -40,6 +40,11 @@ const TaskForm = ({ isUpdate, setIsUpdate, data }) => {
     }
 
     const handleCancel = () => {
+        if (closeBtn) {
+            closeBtn.current.click();
+        } else {
+            setIsUpdate(false);
+        }
         setIsUpdate(false);
     }
 

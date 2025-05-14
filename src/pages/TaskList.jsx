@@ -1,4 +1,4 @@
-import { useContext, useReducer } from 'react'
+import { useContext, useEffect, useReducer, useState } from 'react'
 import TaskContext from '../context/TaskContext';
 import { Link } from 'react-router-dom';
 import { Edit, Eye, Trash } from 'lucide-react';
@@ -16,6 +16,21 @@ const reducer = (state, action) => {
 const TaskList = () => {
     const { allTasks } = useContext(TaskContext);
     const [state, dispatch] = useReducer(reducer, { type: null, data: null });
+    const [filteredTasks, setFiltereTasks] = useState(null)
+    useEffect(() => {
+        if (allTasks) {
+            setFiltereTasks(allTasks)
+        }
+
+    }, [allTasks])
+    const handleSearch = (e) => {
+        let { value } = e.target;
+        const filteredArr = allTasks.filter((task) => (
+            task.title.toLowerCase().includes(value.toLowerCase())
+        )
+        )
+        setFiltereTasks(filteredArr);
+    }
     return (
         <div className='container mt-5 bg-primary p-5'>
             <div className='d-flex align-items-center justify-content-between bg-primary'>
@@ -24,7 +39,7 @@ const TaskList = () => {
             </div>
 
             <div className='mt-4'>
-                <input type="text" className='form-control' placeholder='Search task' />
+                <input onChange={handleSearch} type="text" className='form-control' placeholder='Search task' />
 
             </div>
             <div className='mt-4 text-white'>
@@ -36,8 +51,8 @@ const TaskList = () => {
                     <div className='col-lg-2'>Actions</div>
                 </div>
                 {
-                    allTasks ?
-                        allTasks.map((task) => (
+                    filteredTasks ?
+                        filteredTasks.map((task) => (
                             <div key={task.id} className='row align-items-center py-3 mb-2 rounded-1 bg-dark'>
                                 <div className='col-lg-1'>{task.id}</div>
                                 <div className='col-lg-3'>{task.title}</div>
