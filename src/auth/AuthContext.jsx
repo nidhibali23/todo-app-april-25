@@ -8,6 +8,7 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
     const navigate = useNavigate();
     const [user, setUser] = useState(null);
+    const [userDetails, setUserDetails] = useState(null);
 
 
 
@@ -63,9 +64,35 @@ export const AuthProvider = ({ children }) => {
             console.log(error)
 
         }
-
     }
 
+
+    const fetchUserDetails = async (id) => {
+        try {
+            const response = await fetch(`http://localhost:5001/users/${id}`, { method: "GET" })
+            const details = await response.json();
+            setUserDetails(details);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const updateUser = async (formData) => {
+        const config = {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "Application/json",
+            },
+            body: JSON.stringify(formData)
+        }
+        try {
+            const response = await fetch(`http://localhost:5001/users/${formData.id}`, config)
+            alert("User updated Successfully");
+            fetchUserDetails(user.id)
+        } catch (error) {
+
+        }
+    }
 
 
     //check user status
@@ -98,12 +125,19 @@ export const AuthProvider = ({ children }) => {
             checkUserStatus(local.email);
         }
     }, [])
+
+
     return (
         <AuthContext.Provider value={{
             user,
             registerUser,
             loginUser,
-            logout
+            logout,
+            fetchUserDetails,
+            userDetails,
+            updateUser
+
+
         }}>
             {children}
         </AuthContext.Provider>

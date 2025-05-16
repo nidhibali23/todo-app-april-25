@@ -3,6 +3,7 @@ import TaskContext from '../context/TaskContext';
 import { Link } from 'react-router-dom';
 import { Edit, Eye, Trash } from 'lucide-react';
 import Popup from '../components/Popup';
+import { formatDate } from '../helper';
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -57,7 +58,7 @@ const TaskList = () => {
                                 <div className='col-lg-1'>{task.id}</div>
                                 <div className='col-lg-3'>{task.title}</div>
                                 <div className='col-lg-4'>{task.description}</div>
-                                <div className='col-lg-2'>{task.duedate}</div>
+                                <div className='col-lg-2'>{formatDate(task.duedate)}</div>
                                 <div className='col-lg-2'>
                                     <span className='px-2' data-bs-toggle="modal" data-bs-target="#popup" onClick={() => dispatch({ type: "VIEW", payload: task })}>
                                         <Eye size={20} />

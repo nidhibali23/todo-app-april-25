@@ -44,6 +44,7 @@ const TaskForm = ({ isUpdate, setIsUpdate, data, closeBtn }) => {
             closeBtn.current.click();
         } else {
             setIsUpdate(false);
+
         }
         setIsUpdate(false);
     }

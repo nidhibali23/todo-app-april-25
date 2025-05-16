@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react'
 import TaskForm from '../components/TaskForm'
 import TaskContext from '../context/TaskContext'
+import { formatDate } from '../helper';
 
 const CreateTask = () => {
     const { latestTask, recentTasks } = useContext(TaskContext);
@@ -39,8 +40,8 @@ const CreateTask = () => {
                                             <h3>{latestTask.title}</h3>
                                             <p>{latestTask.description}</p>
                                             <div className='d-flex align-items-center justify-content-between'>
-                                                <p>Modified on: {latestTask.modifiedon}</p>
-                                                <p>Due Date: {latestTask.duedate}</p>
+                                                <p>Modified on: {formatDate(latestTask.modifiedon)}</p>
+                                                <p>Due Date: {formatDate(latestTask.duedate)}</p>
                                             </div>
                                         </> :
                                         <p>Please add a task</p>
@@ -61,7 +62,7 @@ const CreateTask = () => {
                                         recentTasks.map((task) => (
                                             <div className='d-flex align-items-center justify-content-between p-2 border border-primary'>
                                                 <p className='mb-0'>{task.title}</p>
-                                                <p>{task.duedate}</p>
+                                                <p>{formatDate(task.duedate)}</p>
 
                                             </div>
 

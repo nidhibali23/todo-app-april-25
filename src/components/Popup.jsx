@@ -1,6 +1,7 @@
 import { useContext, useRef } from 'react';
 import TaskForm from './TaskForm';
 import TaskContext from '../context/TaskContext';
+import { formatDate } from '../helper';
 
 const Popup = ({ task }) => {
     const { deleteTask } = useContext(TaskContext);
@@ -24,8 +25,8 @@ const Popup = ({ task }) => {
                                     <h3>{data?.title}</h3>
                                     <p>{data?.description}</p>
                                     <div className='d-flex align-items-center justify-content-between'>
-                                        <p className='mb-0'>Modified On: {data?.modifiedon}</p>
-                                        <p className='mb-0'>Due Date: {data?.duedate}</p>
+                                        <p className='mb-0'>Modified On: {formatDate(data?.modifiedon)}</p>
+                                        <p className='mb-0'>Due Date: {formatDate(data?.duedate)}</p>
                                     </div>
                                 </div>
 
